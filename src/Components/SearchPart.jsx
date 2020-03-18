@@ -1,4 +1,5 @@
 import React from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
 import './SearchPart.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -9,11 +10,15 @@ const search  = <FontAwesomeIcon icon={faSearch} />
 
 function SearchPart(props){
 
-    countriesArray.forEach(country =>{
-      console.log(country.name)
-    })
+
+
 
   function handleChange(e){
+
+    countriesArray.forEach(country =>
+      console.log(country.region)
+    )
+
     let currentList = [];
     let newlist = [];
 
@@ -40,7 +45,16 @@ function SearchPart(props){
     <Api/>
     <div className="search-container">
       <div className="search-div">{search} <input className="search-field" type="text" placeholder="Search for a country..." onChange={handleChange}></input></div>
-      <div className="filter">Filter by region v</div>
+      <Dropdown>
+         <Dropdown.Toggle variant="dark" id="dropdown-basic">
+           Filter by Region
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+        {countriesArray.forEach(country =>{
+          return <Dropdown.Item href="#/action-1">{country.region}</Dropdown.Item>
+        })}
+        </Dropdown.Menu>
+      </Dropdown>
     </div>
     </div>
   )}

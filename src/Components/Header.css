@@ -32,3 +32,8 @@ a:hover {
 h6{
   font-size: 0.8rem;
 }
+
+.white{
+  color: black;
+  background-color: white;
+}
