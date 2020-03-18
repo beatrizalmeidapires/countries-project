@@ -5,21 +5,33 @@ import { faMoon } from '@fortawesome/free-solid-svg-icons';
 
 const moon  = <FontAwesomeIcon icon={faMoon} />
 
-function Header(props){
-  const [isLight, setIsLight] = useState(false)
-  const [text, setText] = useState("Dark Mode")
-
-  function handleClick(){
-    setText("Light Mode")
-    setIsLight(true)
-    document.body.classList.add('light-mode');
+class Header extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      isDark: false,
+      text: "Dark Mode",
+    }
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  return (
-    <div className={isLight ? "white" + " header-container" : "header-container"}>
-      <h5 className="text-left"><b>Where in the world?</b></h5>
-      <h6 className="text-right"><b><a onClick={handleClick}>{moon} </a>{text}</b></h6>
-    </div>
-  )}
+  handleClick(){
+    this.setState({
+      isDark: !this.state.isDark,
+      text: "Light Mode",
+    })
+    document.body.classList.toggle('light-mode');
+  }
+
+  render(){
+    return (
+      <div className={this.state.isDark ? "white" + " header-container" : "header-container"}>
+           <h5 className="text-left"><b>Where in the world?</b></h5>
+           <h6 className="text-right"><b><a onClick={this.handleClick}>{moon} {this.state.text}</a></b></h6>
+         </div>
+    )
+  }
+}
+
 
 export default Header;
