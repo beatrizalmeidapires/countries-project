@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Redirect } from 'react-router-dom'
 import './Api.css';
+import {Link} from 'react-router-dom';
 
 const URL = 'https://restcountries.eu/rest/v2/all'
+
+
+let country;
+function handleClick(e){
+    country = e.target.name;
+    console.log(e.target.name);
+    console.log("i got clicked");
+}
 
 class apiCall extends React.Component {
   constructor(props) {
@@ -35,6 +45,7 @@ class apiCall extends React.Component {
       )
   }
 
+
   render() {
 
     const { error, isLoaded, items } = this.state;
@@ -43,15 +54,20 @@ class apiCall extends React.Component {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
+      const style = {
+        color: 'white'
+      }
+
       return (<div className="container">
         {items.map((item) => (
-          <div className="card">
-            <img src={item.flag}/>
-            <p>{item.name}</p>
-            <p><b>Population: </b>{item.population}</p>
-            <p className="capital"><b>Capital: </b> {item.capital}</p>
-          </div>
-
+          <Link to="/about" style={style}>
+            <div className="card">
+                <img src={item.flag} name={item.name} onClick={handleClick}/>
+                <p>{item.name}</p>
+                <p><b>Population: </b>{item.population}</p>
+                <p className="capital"><b>Capital: </b> {item.capital}</p>
+            </div>
+          </Link>
         ))}
         </div>);
     }
@@ -59,3 +75,4 @@ class apiCall extends React.Component {
 }
 
 export default apiCall;
+export {country}
