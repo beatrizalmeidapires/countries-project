@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import About from './About';
 import Region from './Region';
 import AboutPerRegion from './AboutPerRegion';
+import SearchByName from './SearchByName';
 
 // <SearchPart/>
 function App() {
@@ -16,6 +17,7 @@ function App() {
               <Route path="/about" component={About}/>
               <Route path="/region" component={Region}/>
               <Route path="/aboutperregion" component={AboutPerRegion}/>
+              <Route path="/searchbyname" component={SearchByName}/>
           </Switch>
         </div>
     </Router>

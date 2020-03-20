@@ -1,17 +1,22 @@
-import React, {useState} from 'react';
-import { Redirect } from 'react-router-dom'
-import './Api.css';
+import React from 'react';
+import button from 'react-bootstrap'
 import {Link} from 'react-router-dom';
+import Header from './Components/Header.jsx';
+import './SearchByName.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Region, {countryName} from './Region';
+import SearchPart, {region, text} from './Components/SearchPart.jsx';
 
-const URL = 'https://restcountries.eu/rest/v2/all'
+const arrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-
-let country;
+let countryIdentification;
 function handleClick(e){
-    country = e.target.name;
+  countryIdentification = e.target.name;
 }
 
-class apiCall extends React.Component {
+
+class SearchByName extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +27,7 @@ class apiCall extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://restcountries.eu/rest/v2/all")
+    fetch("https://restcountries.eu/rest/v2/name/" + text)
       .then(res => res.json())
       .then(
         (result) => {
@@ -43,20 +48,25 @@ class apiCall extends React.Component {
       )
   }
 
-
-  render() {
-
+    render() {
     const { error, isLoaded, items } = this.state;
+    console.log("items: " + items)
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div className="loading"><h1>Loading...</h1></div>;
+      return <div>Loading...</div>;
     } else {
       const style = {
         color: 'white'
       }
 
-      return (<div className="container">
+      return (
+        <div>
+        <Header/>
+        <Link to="/">
+          <button> {arrow} Back</button>
+        </Link>
+        <div className="container">
         {items.map((item) => (
           <Link to="/about" style={style}>
             <div className="card">
@@ -67,10 +77,11 @@ class apiCall extends React.Component {
             </div>
           </Link>
         ))}
-        </div>);
+        </div>
+      </div>);
     }
   }
 }
 
-export default apiCall;
-export {country}
+export default SearchByName;
+export {countryIdentification};

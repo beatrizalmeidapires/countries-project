@@ -46,3 +46,8 @@ h5{
 .third-container {
   margin-left: 3rem;
 }
+
+.loading {
+  text-align: center;
+  font-size: 5rem;
+}

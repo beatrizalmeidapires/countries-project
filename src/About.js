@@ -6,6 +6,7 @@ import './About.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Api, {country} from './Components/Api';
+import SearchByName, {countryIdentification} from './SearchByName';
 
 const arrow = <FontAwesomeIcon icon={faArrowLeft} />
 
@@ -21,7 +22,7 @@ class About extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://restcountries.eu/rest/v2/name/" + country)
+    fetch(!country ? "https://restcountries.eu/rest/v2/name/" + countryIdentification : "https://restcountries.eu/rest/v2/name/" + country )
       .then(res => res.json())
       .then(
         (result) => {
@@ -49,7 +50,7 @@ class About extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div class="loading"><h1>Loading...</h1></div>;
     } else {
       const style = {
         color: 'white'
