@@ -67,18 +67,16 @@ class Region extends React.Component {
         <Link to="/">
           <button> {arrow} Back</button>
         </Link>
+        <div class="title"><h1>{items[0].region}</h1></div>
         <div className="container">
-
         {items.map((item) => (
           <Link to="/aboutperregion" style={style}>
-
             <div className="card">
                 <img src={item.flag} name={item.name} onClick={handleClick}/>
                 <p>{item.name}</p>
                 <p><b>Population: </b>{item.population}</p>
                 <p className="capital"><b>Capital: </b> {item.capital}</p>
             </div>
-
           </Link>
         ))}
         </div>

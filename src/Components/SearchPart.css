@@ -38,6 +38,7 @@ body {
 }
 
 #dropdown-basic{
+  font-size: 0.8rem;
   background-color: hsl(209, 23%, 22%);
   border: none;
   height: 2.8rem;

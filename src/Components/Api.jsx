@@ -61,7 +61,7 @@ class apiCall extends React.Component {
           <Link to="/about" style={style}>
             <div className="card">
                 <img src={item.flag} name={item.name} onClick={handleClick}/>
-                <p>{item.name}</p>
+                <p><b>{item.name}</b></p>
                 <p><b>Population: </b>{item.population}</p>
                 <p className="capital"><b>Capital: </b> {item.capital}</p>
             </div>

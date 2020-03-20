@@ -13,7 +13,6 @@ const search  = <FontAwesomeIcon icon={faSearch} />
 let region;
 let text;
 function handleClick(e){
-  e.preventDefault();
   region = e.target.name;
 }
 
@@ -26,7 +25,7 @@ function handleChange(e){
 class SearchPart extends React.Component {
 
   render(){
-  let continents = ["Asia","America", "Europe", "Africa", "Oceania"];
+  let continents = ["Asia","Americas", "Europe", "Africa", "Oceania"];
   return (
     <div>
     <Header/>

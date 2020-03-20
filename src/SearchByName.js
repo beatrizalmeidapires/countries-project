@@ -60,6 +60,7 @@ class SearchByName extends React.Component {
         color: 'white'
       }
 
+
       return (
         <div>
         <Header/>
