@@ -5,11 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Api from './Api.jsx';
 import Header from './Header.jsx';
-
+import {Link} from 'react-router-dom';
 
 
 const search  = <FontAwesomeIcon icon={faSearch} />
 
+let region;
+function handleClick(e){
+  region = e.target.name;
+  console.log(region)
+}
 // function handleChange(e){
 //
 //   countriesArray.forEach(country =>
@@ -50,7 +55,13 @@ class SearchPart extends React.Component {
            Filter by Region
         </Dropdown.Toggle>
         <Dropdown.Menu>
-
+        <Link to="/region">
+        <Dropdown.Item href="#/action-1" name="Asia" onClick={handleClick}>Asia</Dropdown.Item>
+        <Dropdown.Item href="#/action-2" name="America" onClick={handleClick}>America</Dropdown.Item>
+        <Dropdown.Item href="#/action-3" name="Europe" onClick={handleClick}>Europe</Dropdown.Item>
+        <Dropdown.Item href="#/action-4" name="Africa" onClick={handleClick}>Africa</Dropdown.Item>
+        <Dropdown.Item href="#/action-5" name="Oceania" onClick={handleClick}>Oceania</Dropdown.Item>
+        </Link>
         </Dropdown.Menu>
       </Dropdown>
     </div>
@@ -59,4 +70,9 @@ class SearchPart extends React.Component {
   )}
 }
 
-export default SearchPart
+export default SearchPart;
+export {region};
+
+// {items.map((item) => (
+//   <Dropdown.Item href="#/action-1">{item.region}</Dropdown.Item>
+// ))}

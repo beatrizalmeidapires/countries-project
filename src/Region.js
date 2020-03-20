@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
+import './Region.css';
+import SearchPart, {region} from './Components/SearchPart';
 import { Redirect } from 'react-router-dom'
-import './Api.css';
 import {Link} from 'react-router-dom';
+import Header from './Components/Header';
+import button from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-const URL = 'https://restcountries.eu/rest/v2/all'
+const arrow = <FontAwesomeIcon icon={faArrowLeft} />
 
-
-let country;
+let countryName;
 function handleClick(e){
-    country = e.target.name;
+  countryName = e.target.name;
 }
 
-class apiCall extends React.Component {
+class Region extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +26,7 @@ class apiCall extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://restcountries.eu/rest/v2/all")
+    fetch("https://restcountries.eu/rest/v2/region/" + region)
       .then(res => res.json())
       .then(
         (result) => {
@@ -55,22 +59,33 @@ class apiCall extends React.Component {
       const style = {
         color: 'white'
       }
+      console.log(items)
 
-      return (<div className="container">
+      return (
+        <div>
+        <Header/>
+        <Link to="/">
+          <button> {arrow} Back</button>
+        </Link>
+        <div className="container">
+
         {items.map((item) => (
-          <Link to="/about" style={style}>
+          <Link to="/aboutperregion" style={style}>
+
             <div className="card">
                 <img src={item.flag} name={item.name} onClick={handleClick}/>
                 <p>{item.name}</p>
                 <p><b>Population: </b>{item.population}</p>
                 <p className="capital"><b>Capital: </b> {item.capital}</p>
             </div>
+
           </Link>
         ))}
-        </div>);
+        </div>
+      </div>);
     }
   }
 }
 
-export default apiCall;
-export {country}
+export default Region;
+export {countryName}

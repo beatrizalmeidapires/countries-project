@@ -5,7 +5,7 @@ import Header from './Components/Header.jsx';
 import './About.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import Api, {country} from './Components/Api';
+import Region, {countryName} from './Region';
 
 const arrow = <FontAwesomeIcon icon={faArrowLeft} />
 
@@ -21,7 +21,7 @@ class About extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://restcountries.eu/rest/v2/name/" + country)
+    fetch("https://restcountries.eu/rest/v2/name/" + countryName)
       .then(res => res.json())
       .then(
         (result) => {
